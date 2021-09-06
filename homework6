@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HomeWork6</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body>
+    <!--    На странице в html задать список элементов li с числами. Джававскриптом нужно выбрать из этого списка четные числа и создать из них массив. Затем, используя метод forEach, создать из массива новый спсок элементов li и поместить эти элементы в исходный тег ul. Для обхода через querySelectorAll использовать цикл for-of (forEach работать не будет)-->
+    <!--
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <script>
+        let li = document.querySelectorAll("li");
+        let ul = document.querySelector("ul");
+        let newArray = [];
+        for (let item of li) {
+            if (Number(item.innerText) % 2 == 0) {
+                newArray.push(item);
+            }
+        }
+        newArray.forEach((item) => {
+            let newLi = document.createElement("li");
+            newLi.innerText = item.innerText;
+            ul.appendChild(newLi);
+        });
+
+    </script>
+-->
+
+
+    <!--
+    2. Создать разметку формы с инпутом для текста и селектом для категории (добавить несколько option). Под формой должны должен быть список ul. В этот список каждую секунду добавляется новый элемент li. Для добавления можно использовать функцию setInterval https://learn.javascript.ru/settimeout-setinterval
+
+Вся разметка должна быть создана джаваскриптом. В HTML в начале body должен быть пустой. Старайтесь дробить код на небольшие функции (не обязательно.
+
+2.1* Использовать bootstrap для стилей
+-->
+    <!--
+    <form>
+        <input type="text">
+        <select>
+            <option>Yes</option>
+            <option>No</option>
+        </select>
+    </form>
+-->
+
+
+    <!--
+    <script>
+        function createForm() {
+            let form = document.createElement("form");
+            document.body.appendChild(form);
+            let input = document.createElement("input");
+            input.className = 'form-control';
+            input.placeholder = 'Username';
+            input.type = "text";
+            let select = document.createElement("select");
+            select.className = 'form-select';
+            for (let i = 1; i < 5; i++) {
+                let option = document.createElement("option");
+                option.innerText = [i];
+                option.value = [i];
+                select.appendChild(option);
+            }
+            form.appendChild(input);
+            form.appendChild(select)
+            return;
+        }
+        createForm();
+
+        function createUl() {
+            let ul = document.createElement("ul");
+            document.body.appendChild(ul);
+            let timerId = setInterval(() => {
+                let li = document.createElement("li");
+                ul.appendChild(li);
+                return;
+            }, 1000);
+            setTimeout(() => {
+                clearInterval(timerId);
+            }, 10000);
+
+        }
+        createUl();
+
+    </script>
+-->
+
+    <!--    Напишите функцию copyArr(arr), которая копирует массив не изменяя иригинал.-->
+    <!--
+    <script>
+        var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+        function arrayClone(arr) {
+            let newArray = [];
+            for (let item of arr) {
+                newArray.push(item);
+            }
+            return newArray;
+        }
+
+        var arr1 = arrayClone(vegetables);
+        document.writeln(arr1);
+
+    </script>
+-->
+
+
+    <!--    Напишите код, который преобразовывает и объединяет все элементы массива в одно строковое значение. Элементы массива будут разделены запятой. Получите результат двумя разными методами.-->
+
+    <!--
+    <script>
+        var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+        function stringArr(arr) {
+            let str1 = '';
+            for (let i = 0; i < arr.length; i++) {
+                str1 += arr[i];
+                if (i < arr.length - 1) {
+                    str1 += ", ";
+                }
+            }
+            return str1;
+        }
+        let str1 = stringArr(vegetables);
+        document.writeln(str1);
+
+    </script>
+-->
+    <!--
+    <script>
+        var vegetables = ['Капуста', 'Репа', 'Редиска', 'Морковка'];
+
+        function stringArr(arr) {
+            return arr.join(', ');
+        }
+        let str2 = stringArr(vegetables);
+        document.writeln(str2);
+
+    </script>
+-->
+
+
+
+    <!--    Пользователь вводит многозначное число через promt. Напишите функцию colonOdd(num), которая принимает число num в качестве аргумента и вставляет двоеточие (:) между двумя нечетными числами. Например, если вводится число 55639217, то на выход должно быть 5:563:921:7.-->
+
+
+    <!--
+    <script>
+        let num = prompt('Введите число', 55);
+
+        function colonOdd(num) {
+            let arr = num.split('');
+            let newArr = [];
+            let param = 0;
+            for (let item of arr) {
+                if (item % 2 == 1) {
+                    if (param == 1) {
+                        newArr.push(":");
+                    }
+                    param = 1;
+                } else {
+                    param = 0;
+                }
+                newArr.push(item);
+            }
+            return newArr.join("");
+        }
+
+        document.writeln(colonOdd(num));
+        console.log(newArr);
+
+    </script>
+-->
+    <!--
+    <script>
+        let num = prompt('Введите число', 55);
+
+        function colonOdd(num) {
+            let arr = num.split('');
+            let newArr = [];
+
+            for (let i = 0; i < arr.length; i++) {
+                if ((arr[i] % 2 == 1) && ((arr[i] + 1) % 2 == 1)) {
+                    if ((i + 1) == arr.length) {
+                        newArr.push(arr[i]);
+                    } else {
+                        newArr.push(arr[i] + ":");
+                    }
+                } else {
+                    newArr.push(arr[i]);
+                }
+
+            }
+            return newArr.join("");
+        }
+
+        document.writeln(colonOdd(num));
+    </script>
+
+
+-->
+
+    <!--    Пользователь вводит строку кириллицей разного регистра. Напишите функцию, которая принимает строку в качестве аргумента и заменяет регистр каждого символа на противоположный. Например, если вводится «КаЖдЫй ОхОтНиК», то на выходе должен быть массив [кАжДыЙ оХоТнИк].-->
+
+    <!--
+    <script>
+        const str = prompt('Введите слово', 'КаЖдЫй ОхОтНиК');
+
+        function changeRegister(str) {
+            let newStr = [];
+            for (let item of str) {
+                if (item == item.toUpperCase()) {
+                    newStr.push(item.toLowerCase());
+                } else {
+                    newStr.push(item.toUpperCase());
+                }
+            }
+            return newStr.join("");
+        }
+
+        document.writeln(changeRegister(str));
+
+    </script>
+-->
+
+
+    <!--    Напишите функцию removeDuplicates(arr), которая возвращает массив, в котором удалены повторяющиеся элементы из массива arr (игнорируйте чувствительность к регистру).-->
+
+    <!--
+    <script>
+        var arr = ["php", "php", "css", "css",
+            "script", "script", "html", "html", "java"
+        ];
+
+        function removeDuplicates(arr) {
+            let newArr = [];
+            for (let item of arr) {
+                if (!newArr.includes(item)) {
+                    newArr.push(item);
+                }
+            }
+            return newArr;
+        }
+
+        document.writeln(removeDuplicates(arr));
+
+    </script>
+-->
+
+
+
+    <!--    Високосным годом является каждый четвертый год и века начинаются только на высокостные года, отличие високосного года от обычного заключается в появлении 366-го дня. Напишите функцию chooseYears(start, end), которая принимает в качестве аргументов диапозон лет и возвращает массив високосных лет в заданном диапазоне.-->
+
+    <!--
+    <script>
+        function chooseYears(start, end) {
+            let newArr = [];
+            for (let i = start; i <= end; i++) {
+                if (i % 4 == 0) {
+                    newArr.push(i);
+                }
+            }
+            return newArr;
+        }
+
+        document.writeln(chooseYears(2000, 2018));
+
+    </script>
+-->
+
+
+
+    <!--    Используя метод sort перепишите предсталенный ниже код, который с помощью цикла for случайно изменяет порядок расстановки элементов массива.-->
+
+    <!--
+    <script>
+        var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        //        function shuffle(arr) {
+        //            for (var i = arr.length - 1; i > 0; i--) {
+        //                var j = Math.floor(Math.random() * (i + 1));
+        //                var temp = arr[i];
+        //                arr[i] = arr[j];
+        //                arr[j] = temp;
+        //            }
+        //            return arr;
+        //        }
+        function shuffle() {
+            return 0.5 - Math.random();
+        }
+
+        array.sort(shuffle);
+
+        document.writeln(array);
+
+    </script>
+-->
+
+
+    <!--    Напишите функцию getFirst(array, n), которая возвращает фрагмент массива, содержащий первые 'n' элементов массива.-->
+
+    <!--
+    <script>
+        var array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        function getFirst(array, n = 1) {
+            newArray = [];
+            if (n > array.length || n < 0) {
+                n = array.length;
+            }
+
+            for (let i = 0; i < n; i++) {
+                newArray.push(array[i]);
+            }
+            return newArray;
+        };
+
+        console.log(getFirst(array)); // 1
+        console.log(getFirst(array, 4)); // 1,2,3,4
+        console.log(getFirst(array, -3)); // 1,2,3,4,5,6 
+
+    </script>
+-->
+
+    <!--    Напишите функцию getLast(array, n), которая возвращает фрагмент массива, содержащий последние 'n' элементов массива.-->
+    <!--
+    <script>
+        var array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        function getLast(array, n = 1) {
+            if (!array) return false;
+            if (n == null) return array[array.length - 1];
+            return array.slice((array.length - n), array.length);
+
+        };
+
+        document.writeln(getLast(array)); // 9
+        document.writeln(getLast(array, 4)); // 6,7,8,9
+        document.writeln(getLast(array, 12)); // 1,2,3,4,5,6,7,8,9 
+
+    </script>
+-->
+
+
+    <!--    Напишите код, который создаёт массив элементов представляющих собой сумму соответствующих элементов заданных массивов.-->
+    <!--
+    <script>
+        let arr1 = [1, 2, 3, 4, 5];
+        let arr2 = [4, 5, 6, 7, 9, 1, 0, 3];
+
+        function summArr(arr1, arr2) {
+            let summ = [];
+            if (arr1.length > arr2.length) {
+                count = arr1.length;
+            } else {
+                count = arr2.length;
+            }
+            for (let i = 0; i < count; i++) {
+                if (arr2[i] === undefined) {
+                    arr2.push(0);
+                } else {
+                    if (arr1[i] === undefined) {
+                        arr1.push(0);
+                    }
+                }
+                summ.push(arr1[i] + arr2[i]);
+            }
+            return summ;
+        }
+
+        document.writeln(summArr(arr1, arr2)); // [5,7,9,4,5]  
+
+    </script>
+-->
+
+
+    <!--Напишите функцию countIdentic(arr), которая возвращает количество повторяющихся элементов в массиве.-->
+
+    <script>
+        function countIdentic(arr) {
+            newArr = [];
+            //            for (let i = 0; i < arr.length - 1; i++) {
+            //                if (!newArr.includes(arr[i])) {
+            //                    if (arr.indexOf(arr[i], i + 1) > -1) {
+            //                        newArr.push(arr[i]);
+            //                    }
+            //                }
+            //            }
+
+            for (let i = 0; i < arr.length; i++) {
+                if (!newArr.includes(arr[i])) {
+                    if (arr.lastIndexOf(arr[i]) != i) {
+                        newArr.push(arr[i]);
+                    }
+                }
+            }
+            return newArr.length;
+        }
+
+        console.log(countIdentic([3, 3, 7, 7, 3, 3, 4, 5, 5, 8, 8, 8])); // 4
+        console.log(countIdentic([15, 14, 13, 19, 13, 14, 14, 14, 7, 9, 9])) // 3  
+
+    </script>
+
+</body>
+
+</html>
