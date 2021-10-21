@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HomeWork12</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <ul>
+        <li>10</li>
+        <li>20</li>
+        <li>30</li>
+        <li>40</li>
+    </ul>
+    <script>
+        //1. Задачи на деструктуризацию.
+        //
+        //1.1 Задать массив имен. Создать 2 переменные, которые будут хранить первых 2 имени, вывести их в консоль. Создать массив, который будет хранить остальные имена, вывести имена из него по одному в консоль. Если кол-во элементов массива меньше 2, то вторая переменная должна стать равна "alex".
+        //
+        //1.2 Задать массив имен. Задать функцию, которая принимает 3 параметра и выводит их в консоль. Передать массив в функцию. Внутри функции каждый параметр должен быть равен одному из элементов массива
+        //
+        //1.3 Задать объект с N полей. Создать 2 переменные, которые будут называться так же, как поля, и хранить 2 значения полей объекта. Если соответствующих полей в объекте нет, задать значения чисел 1 и 2. Все остальные поля объекта записать в переменную fields.
+
+        //1.1
+        let array = ["misha", "sasha", "masha", "pasha"];
+        let [name1, name2, ...names] = array;
+        console.log(name1, name2);
+        let [name3, name4 = "alex"] = names;
+        console.log(name3);
+        console.log(name4);
+
+
+        //1.2
+        let array = ["misha", "sasha", "masha", "pasha"];
+
+        function log(a, b, c) {
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        };
+        log(...array);
+
+
+        //1.3
+        let obj = {
+            car: "mersedes",
+            age: 2017,
+            color: "grey"
+        }
+        let {
+            car,
+            age,
+            crush = "1",
+            ...fields
+        } = obj;
+
+        console.log(car);
+        console.log(age);
+        console.log(crush);
+        console.log(fields);
+
+    </script>
+
+
+</body>
+
+</html>
