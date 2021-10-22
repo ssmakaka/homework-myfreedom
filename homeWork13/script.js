@@ -20,6 +20,8 @@ form.addEventListener("submit", function (event) {
                 .then((response) => response.json())
                 .then((data) => {
                     result.innerHTML = data.html;
+                    snipet.innerText = "";
+
                     for (let item of last) {
                         fetch("https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v%3D" + item.id.videoId + "&format=json")
                             .then((response) => response.json())
