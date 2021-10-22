@@ -10,32 +10,36 @@ function createSnipet(cod) {
 }
 form.addEventListener("submit", function (event) {
     event.preventDefault();
-
     fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDEwbtEwvNeXqRPnOHfCxTVqu0C9lOkWWY&q=" + textarea.value + "&type=video")
         .then((response) => response.json())
         .then((data) => {
-            let [first, ...last] = data.items;
-            let id = first.id.videoId;
-            fetch("https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v%3D" + id + "&format=json")
-                .then((response) => response.json())
-                .then((data) => {
-                    result.innerHTML = data.html;
-                    snipet.innerText = "";
-
-                    for (let item of last) {
-                        fetch("https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v%3D" + item.id.videoId + "&format=json")
-                            .then((response) => response.json())
-                            .then((data) => {
-                                createSnipet(data.html);
-                                let iframe = document.querySelector("iframe");
-                                iframe.addEventListener("click", function () {
-                                    result.innerText = "";
-                                });
-                            });
-                    }
-
-                });
+            let allId = data.items;
+            for (let item of allId) {
+                fetch("https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v%3D" + item.id.videoId + "&format=json")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        createSnipet(data.html);
+                    });
+            };
 
         });
 
 });
+
+
+//3) Написать функцию, которая принимает на вход массив чисел, а возвращает массив только из значений, встречающихся в массиве лишь один раз
+//
+//[1,3,5,5,7,9,9,1,3,3,5,6,10,11,10,5] => [1,3,5,7,9,6,10,11]
+
+let array1 = [1, 3, 5, 5, 7, 9, 9, 1, 3, 3, 5, 6, 10, 11, 10, 5];
+
+function single(array) {
+    let newArray = [];
+    for (let item of array) {
+        if (!newArray.includes(item)) {
+            newArray.push(item);
+        }
+    }
+    return newArray;
+}
+console.log(single(array1));
