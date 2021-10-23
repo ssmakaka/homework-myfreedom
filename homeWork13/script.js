@@ -43,3 +43,22 @@ function single(array) {
     return newArray;
 }
 console.log(single(array1));
+
+
+//4) сделать очень простой калькулятор calc. Он умеет добавлять и вычитать единицу. Сделать на основе объекта. Одно свойство value: текущее значение калькулятора (по умолчанию ноль), 3 метода: plus, minus и read (просто выводит в консоль текущее значение) 
+
+let obj = {
+    value: 0
+};
+obj.read = function () {
+    console.log(obj.value)
+};
+obj.plus = function () {
+    console.log(obj.value = obj.value + 1)
+}
+obj.minus = function () {
+    console.log(obj.value = obj.value - 1)
+}
+console.log(obj.read());
+console.log(obj.plus());
+console.log(obj.minus());
